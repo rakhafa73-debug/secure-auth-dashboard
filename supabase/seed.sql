@@ -1,0 +1,9 @@
+-- =============================================================================
+-- SecureAuth — seed data
+-- =============================================================================
+-- Intentionally empty. SecureAuth never seeds fake users or fake statistics.
+-- Create real accounts through the sign-up page.
+--
+-- To create your FIRST administrator after registering a real account, run the
+-- snippet in scripts/make-first-admin.sql as a trusted operator.
+-- =============================================================================

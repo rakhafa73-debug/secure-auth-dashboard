@@ -1,0 +1,119 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: dark;
+  }
+
+  * {
+    @apply border-line;
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-base text-content antialiased;
+    font-feature-settings: 'cv02', 'cv03', 'cv04', 'ss01';
+    min-height: 100dvh;
+    overflow-x: hidden;
+  }
+
+  /* Visible, consistent focus ring for keyboard users (WCAG 2.4.7 / 2.2 AA) */
+  :focus-visible {
+    @apply outline-none ring-2 ring-primary/70 ring-offset-2 ring-offset-base;
+  }
+
+  /* Remove default number input spinners for a cleaner look */
+  input[type='number']::-webkit-outer-spin-button,
+  input[type='number']::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  ::selection {
+    background: rgba(119, 121, 237, 0.35);
+    color: #f0f1f8;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 9999px;
+    border: 2px solid transparent;
+    background-clip: content-box;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.16);
+    background-clip: content-box;
+  }
+
+  /* Respect user motion preferences (WCAG 2.3.3) */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@layer components {
+  .card-surface {
+    @apply rounded-2xl border border-line bg-card shadow-card;
+  }
+
+  .auth-card {
+    @apply card-surface bg-card/80 backdrop-blur-xl;
+  }
+
+  .input-field {
+    @apply w-full rounded-xl border border-line bg-input px-4 py-3 text-sm text-content placeholder:text-content-faint transition-colors duration-150;
+    @apply hover:border-line-strong focus:border-primary/60 focus:outline-none focus:ring-2 focus:ring-primary/30;
+  }
+
+  .input-field[aria-invalid='true'] {
+    @apply border-danger/60 focus:border-danger/70 focus:ring-danger/30;
+  }
+
+  .btn-base {
+    @apply inline-flex select-none items-center justify-center gap-2 rounded-xl text-sm font-semibold transition-all duration-150;
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/70 focus-visible:ring-offset-2 focus-visible:ring-offset-base;
+    @apply disabled:cursor-not-allowed disabled:opacity-55;
+  }
+
+  .link-muted {
+    @apply text-content-muted underline-offset-4 transition-colors hover:text-content hover:underline;
+  }
+
+  .divider {
+    @apply h-px w-full bg-line;
+  }
+}
+
+/* Utility to hide content visually but keep it for screen readers */
+@layer utilities {
+  .sr-only-focusable:focus {
+    @apply not-sr-only;
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+}
